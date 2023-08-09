@@ -1,0 +1,2 @@
+    - name: remove httpd
+      action: "{{ ansible_pkg_mgr }} name=httpd state=absent"

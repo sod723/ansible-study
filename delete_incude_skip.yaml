@@ -1,0 +1,13 @@
+---
+- name: remove web server
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: remove httpd on CentOS
+      include_tasks: delete_centos.yaml
+      when: ansible_distribution == 'CentOS'
+
+    - name: remove nginx on Ubuntu
+      include_tasks: delete_ubuntu.yaml
+      when: ansible_distribution == 'Ubuntu'
