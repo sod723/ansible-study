@@ -1,0 +1,13 @@
+
+    - name: CentOS httpd 설치
+      action: "{{ ansible_pkg_mgr }} name=httpd state=present"
+
+    - name: httpd index.html
+      get_url: url=https://www.kbstar.com dest=/var/www/html
+
+    - name: start httpd
+      service: name=httpd state=started enabled=yes
+
+    - name: stop firewalld
+      service: name=firewalld state=stopped enabled=no
+
