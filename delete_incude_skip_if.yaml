@@ -1,0 +1,13 @@
+---
+- name: remove web server
+  hosts: all
+  become: yes
+  vars:
+    dist_name: "{{ 'centos' if ansible_distribution == 'CentOS'
+                   else 'ubuntu' if ansible_distribution == 'Ubuntu'
+                   else 'otherlinux' }}"
+
+  tasks:
+    - name: web server remove
+      include_tasks: "delete_{{ dist_name }}.yaml"
+
